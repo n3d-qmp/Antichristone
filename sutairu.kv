@@ -1,0 +1,121 @@
+#:import utils kivy.utils
+#:import effectwidget kivy.uix.effectwidget
+
+
+<GengoShashin>
+
+    IconLeftWidget:
+        icon: root.icon
+
+Screen:
+
+    FloatLayout:
+        id: hankirisuto_hajimaru
+        orientation: 'vertical'
+
+        EffectWidget:
+            id: id_effects
+            effects_shv: 13.0
+            effects: effectwidget.HorizontalBlurEffect(size=self.effects_shv), effectwidget.VerticalBlurEffect(size=self.effects_shv)
+
+            FitImage:
+                source: 'image.jpg'
+
+        MDLabel:
+            id: title
+            center_x_: 0.5
+            center_y_: 0.8
+            hankirisuto: "反キリスト"
+            pos_hint: {"center_x": self.center_x_, "center_y": self.center_y_}
+            text: "[color=#000000]"+self.hankirisuto+"[/color]"
+            font_size: 83
+            font_name: 'jp'
+            markup: True
+            halign: "center"
+            valign: "middle"
+
+        MDLabel:
+            id: title_2
+            hankirisuto: "反キリスト"
+            pos_hint: {"center_x": 0.5, "center_y": 0.8}
+            text: "[color=#ffffff]"+self.hankirisuto+"[/color]"
+            font_size: 90
+            font_name: 'jp'
+            markup: True
+            halign: "center"
+            valign: "middle"
+
+        MDFillRoundFlatButton:
+            id: start_attack
+            text: 'Start'
+            center_y_S: 0.5
+            font_size: "35sp"
+            size_hint_x: 0.4
+            font_name: 'jp'
+            md_bg_color: [0, 0, 0, 0.40]
+            text_color: utils.get_color_from_hex("#ffffff")
+            on_release: app.hajimaru()
+            pos_hint: {"center_x": 0.5, "center_y": self.center_y_S}
+
+        MDTextButton:
+            id: _gengo_telegram_
+            font_size: 40
+            center_y_gt: 0.4
+            font_name: 'jp'
+            text: '[color=#ffffff]  Change language  [/color]'
+            markup: True
+            pos_hint: {"center_x": 0.5, "center_y": self.center_y_gt}
+            on_release: app.gengo_telegram( _gengo_telegram_ )
+
+
+        MDTextField:
+            id: mokuhyoo
+            center_x_T: 5
+            pos_hint: {"center_x": self.center_x_T, "center_y": 0.6}
+            hint_text: "電話番号 (でんわばんごう)"
+            text: ""
+            font_name_hint_text: 'jp'
+            color_mode: 'custom'
+            line_color_focus: utils.get_color_from_hex("#ffffff")
+            size_hint_x: 0.8
+            on_touch_up: app.kurippuboodo(True)
+
+        MDFillRoundFlatButton:
+            id: speeds
+            text: "Ultra"
+            font_name: 'jp'
+            md_bg_color: [0, 0, 0, 0.40]
+            text_color: utils.get_color_from_hex("#ffffff")
+            center_x_m: -6
+            pos_hint: {"center_x": self.center_x_m, "center_y": 0.5}
+            size_hint_x: 0.2
+            on_release: app.sokudo_modo( s_m = 'speeds', w_s_m = speeds)
+
+        MDFillRoundFlatButton:
+            id: modes
+            text: "Mix"
+            font_name: 'jp'
+            md_bg_color: [0, 0, 0, 0.40]
+            center_x_w: 6
+            text_color: utils.get_color_from_hex("#ffffff")
+            pos_hint: {"center_x": self.center_x_w, "center_y": 0.5}
+            size_hint_x: 0.2
+            on_release: app.sokudo_modo( s_m = 'modes', w_s_m = modes)
+
+        MDSpinner:
+            id: update_check
+            size_hint: None, None
+            size: dp(48), dp(48)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            active: False
+            color: [0, 0, 0, 0.40]
+            palette: [[0.8, 0.20784313725490197, 0.23529411764705882, 1.0], [1.0, 1.0, 1.0, 1.0], [0, 0, 0, 0.40]]
+
+        MDLabel:
+            id: update_text
+            text: ""
+            center_y_c: 0.43
+            font_name: 'jp'
+            halign: "center"
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': self.center_y_c}
